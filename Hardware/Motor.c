@@ -77,13 +77,14 @@ void Motor1_SetVoltagePercent(float Percent)
 	/* 这三个引脚的配置需要放在所有IO口的配置之后，这里保险起见再次失能JLink */
 	if (Percent >= 0)
 	{
-		GPIO_SetBits(GPIOA, GPIO_Pin_15);
-		GPIO_ResetBits(GPIOB, GPIO_Pin_3);
-		PWM_SetCompare1(Percent);
-	}else{
 		GPIO_ResetBits(GPIOA, GPIO_Pin_15);
 		GPIO_SetBits(GPIOB, GPIO_Pin_3);
 		PWM_SetCompare1(-Percent);
+		
+	}else{
+		GPIO_SetBits(GPIOA, GPIO_Pin_15);
+		GPIO_ResetBits(GPIOB, GPIO_Pin_3);
+		PWM_SetCompare1(Percent);
 	}
 }
 
